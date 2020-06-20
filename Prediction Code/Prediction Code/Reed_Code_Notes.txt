@@ -1,0 +1,24 @@
+WRFDriver.py is main code. It calls Calculations.py and WRFPredictions.py which calls WRFReader.py
+
+Need Nio (PyNIO) to run WRFReader.py which reads NetCDF WRF files to grab Temp, Pressure, Lat, Long, and wind values.
+
+Prediction method called under "def Prediction" from WRFDriver.py
+
+In Prediction.py:
+
+"hour_duration" part of code says If over 1hour then grab next wrf file - can we pull form one file?
+"22:24" are index of WRF time so pulls out next time and increments by one hour.
+
+"Return points" just stores values in computer memory.
+
+In WRFDRiver.py:
+Saves file of output values.
+
+
+
+
+
+
+
+
+
