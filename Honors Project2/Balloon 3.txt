@@ -1,0 +1,45 @@
+# Balloon flight
+
+# Lines starting with a # character are comments to be ignored
+# You may have comment lines anywhere in the file
+
+# blank lines are also allowed and will be ignored
+
+# Other lines in the file are identified by specific KEYWORDS, followed by data
+# KEYWORDS may include Capital letters, but capitalization must not be required
+# each line stands alone, and there is no required ORDER to the file
+
+Title, 'Balloon Flight 1'
+
+
+#Simulation Defaults
+              Balloon, Launch Dia. (m)  glider,      wind,   Payload Mass(kg),  Altitude (m)
+Simulation,    8243 1000g,  3,        Big Airplane, OK Spring,     1.2,            20000
+
+#            maxtime (sec)     nsteps
+SimControl,  10000,             300
+
+
+#Glider Library
+#            Name           S (m^2)    AR      e        m (kg)      CDo
+Glider,  Paper Airplane,     0.017,     5,    0.9,     0.003,     0.02
+Glider,  Big Airplane,       0.068,     7,    0.85,    0.024,     0.03
+Glider,  Huge Airplane,      0.272,     6.5,  0.83,    0.1924,    0.025
+Glider,  Bixler,             0.26,      7,    0.95,    0.65,      0.025
+Glider,  None,               0.00001,   7,    0.95,    0.00001,   0.025
+
+
+# Windspeed Library
+           name          followed by  altitude,speed pairs (m, m/s)
+WindLib, Average,    (0, 7),  (10000, 60), (19000, 8),  (25000, 5), (35000, 25), (500000, 25)
+WindLib, US Winter,  (0, 4),  (8000, 40),  (15000, 25), (20000, 8), (25000, 5), (40000, 25), (500000, 25)
+WindLib, OK Spring,  (0, 24), (8000, 50),  (15000, 35), (20000, 8), (25000, 5), (40000, 25), (500000, 25)
+WindLib, Steady,  (0, 0.5),  (100000, 0.5), (500000, 0.5)
+WindLib, Zero,  (0, 0.001),  (150000, 0.001),(500000, 0.001)
+
+# A library of available balloons
+# from https://www.scientificsales.com/Meteorological-Weather-Sounding-Balloon-s/25.htm
+#  		ID       Mass(kg)    UninflatedDia (m).   BurstDia (m)
+BalloonLib,   8247 3000g,     3.0,          2.286,               10.7
+BalloonLib,   8245-H 1600g,   1.6,          1.829,               8.23
+BalloonLib,   8243 1000g,     1.0,          1.27,                6.4
