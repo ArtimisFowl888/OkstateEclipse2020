@@ -15,7 +15,7 @@ from ProjectGUI import Ui_Dialog
 # import the Problem Specific class
 from StratoGliderClass import BalloonFlight
 
-
+# this is just a test
 
 class PlotCanvas(FigureCanvas):
 
