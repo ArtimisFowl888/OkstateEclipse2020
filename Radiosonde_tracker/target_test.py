@@ -47,6 +47,8 @@ while (var<5):
     if AZz > AZt:
         dh = AZz-AZt
         h = h-dh
+        if h<0:
+            h=0
         kit.servo[0].angle = h
     elif AZz == AZt:
         h = h
@@ -54,7 +56,10 @@ while (var<5):
     else:
         dh = AZt-AZz
         h = h+dh
+        if h>140:
+            h=140
         kit.servo[0].angle = h
     var = var+1
+    time.sleep(5)
 
 
