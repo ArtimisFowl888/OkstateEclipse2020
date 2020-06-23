@@ -28,6 +28,7 @@ kit.servo[0].angle = h
 kit.servo[0].angle = e
 
 # ground station gps input
+# todo get ground station gps data
 Lon0 = float(input('What is the Current longitude'))
 Lat0 = float(input('What is the Current latitude'))
 Alt0 = float(input('What is the Current altitude'))
@@ -41,6 +42,7 @@ while True:
     if AZz < 0:
         AZz = AZz+360
     # radiosonde data
+    # todo integrate web-scraping for sonde data
     AZt = 0
     Lont = float(input('What is the target longitude'))
     Latt = float(input('What is the target latitude'))
