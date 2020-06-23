@@ -2,10 +2,12 @@ import board
 import numpy as np
 import time
 import busio
-import adafruit_pca9685
-i2c = busio.I2C(board.SCL, board.SDA)
-pca = adafruit_pca9685.PCA9685(i2c)
 from adafruit_servokit import ServoKit
+import adafruit_pca9685
+import adafruit_lsm9ds1
+i2c = busio.I2C(board.SCL, board.SDA)
+pca = adafruit_pca9685.PCA9685(i2c,0x41)
+mag = adafruit_lsm9ds1.LSM9DS1_I2C(i2c)
 kit = ServoKit(channels=16)
 pca.frequency = 50
 kit.servo[0].actuation_range = 140
@@ -16,7 +18,6 @@ radius = 6371
 h = 70
 
 kit.servo[0].angle = h
-AZz = float(input('What is the Current heading'))
 Lon0 = float(input('What is the Current longitude'))
 Lat0 = float(input('What is the Current latitude'))
 Alt0 = float(input('What is the Current altitude'))
@@ -24,8 +25,11 @@ lor0 = Lon0*(pi/180)
 lar0 = Lat0*(pi/180)
 
 var = 0
-while (var<5):
-    #AZt = float(input('What is the target heading'))
+while True:
+    mag_x, mag_y, mag_z = mag.magnetic
+    AZz = np.atan2(mag_y,mag_x)*(180/pi)
+    if AZz < 0:
+        AZz = AZz+360
     Lont = float(input('What is the target longitude'))
     Latt = float(input('What is the target latitude'))
     Altt = float(input('What is the target altitude'))
@@ -47,7 +51,7 @@ while (var<5):
     if AZz > AZt:
         dh = AZz-AZt
         h = h-dh
-        if h<0:
+        if h<5:
             h=0
         kit.servo[0].angle = h
     elif AZz == AZt:
@@ -56,7 +60,7 @@ while (var<5):
     else:
         dh = AZt-AZz
         h = h+dh
-        if h>140:
+        if h>135:
             h=140
         kit.servo[0].angle = h
     var = var+1
