@@ -52,7 +52,7 @@ for i=1:size(files)
             T = table(alt(lower:upper), u(lower:upper), v(lower:upper), temp(lower:upper), bvFreqSquared(lower:upper));
             T.Properties.VariableNames = {'alt' 'u' 'v' 'temp' 'bv2'};
             [~, n, ~] = fileparts(files(i).name);
-            fname = sprintf("~/hodographs/%s-%d-%d.txt", n, alt(lower), alt(upper));
+            fname = sprintf(".\\hodograph\\%s-%d-%d.txt", n, alt(lower), alt(upper));
             writetable(T, fname);
 
         end
