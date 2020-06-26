@@ -1,12 +1,9 @@
-d = '/Users/thomascolligan/chile_data/renamed/bad_data_removed/all';
+d = '.\Profile\Profile\';
 t = fullfile(d, "*.txt");
 files = dir(t);
 for i=1:size(files)
     current = files(i).name;
     current = fullfile(d, current);
-    if ~contains(current, 'C12')
-        continue
-    end
     data = readRadioSondeData(current);
     [~, idx] = max(data.Alt);
     data = data(1:idx, :);
