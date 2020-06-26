@@ -75,7 +75,7 @@ for i in range(0,x.size):
 
         total_radiation = r.get_rad_total(lat,el,math.radians(h*15),5.79)/100
 
-        print h, el, total_radiation
+        print (h, el, total_radiation)
         z[j,i] = total_radiation
 
 z_min, z_max = np.amin(z), np.amax(z)
@@ -91,9 +91,9 @@ ax.set_xlabel('Solar Intensity (W/m^2)')
 ax.set_ylabel('Elevation (m)')
 fig.colorbar(c, ax=ax)
 
-print "\nTEST"
+print ("\nTEST")
 
 rad = r.get_rad_total(lat,40000,0,5.79)
-print "total radiation:" , rad
+print ("total radiation:" , rad)
 
 plt.show()
