@@ -16,22 +16,22 @@ cs_area = math.pi*d*d/4.0
 surfArea = math.pi*d*d
 vm_coeff = .5
 
-massEnv = surfArea*939*7.87E-6#rhoEnv*envThickness
+massEnv = surfArea*939*7.87E-6  # rhoEnv*envThickness
 massPayload = 0
-cp = 2250.0 #(J/(kg K)) specific heat of envelope material
-k = massEnv*cp #thermal mass coefficient
+cp = 2250.0  # (J/(kg K)) specific heat of envelope material
+k = massEnv*cp  # thermal mass coefficient
 
 
-doy = 306 #temporary day of year
+doy = 306  # temporary day of year
 lat = math.radians(35.106766) # rad
 
 class State:
     def __init__(self):
         self.v= 0.0
-        self.el = 132.6 #m
+        self.el = 132.6  # m
         atm = fluids.atmosphere.ATMOSPHERE_1976(self.el)
-        self.Ti = atm.T #287.288117979
-        self.Ts = atm.T #287.288117979 #atm temperature at 132.6 m
+        self.Ti = atm.T  # 287.288117979
+        self.Ts = atm.T  # 287.288117979 #atm temperature at 132.6 m
 
 class StateDerrivative:
     def __init__(self):
@@ -39,6 +39,7 @@ class StateDerrivative:
         self.dz = 0.0
         self.dTi = 0.0
         self.dTs = 0.0
+
 
 '''
 def get_acceleration(state):
@@ -57,72 +58,71 @@ def get_acceleration(state):
     return accel
 '''
 
+
 def get_acceleration(v,el,T_s,T_i):
     atm = fluids.atmosphere.ATMOSPHERE_1976(el)
     rho_int = atm.P/(Rsp_air*T_i)
     rho_atm = atm.rho
-    #print "VOL:", vol
+    # print "VOL:", vol
     F_b = (rho_atm - rho_int)*vol*atm.g
     Cd = .8
-    F_d =  Cd*(0.5*rho_atm*math.fabs(v)*v)*cs_area#Sphere_Balloon.get_Cd(state.v, state.el)*(0.5*rho_atm*fabs(state.v)*state.v)*cs_area
+    F_d =  Cd*(0.5*rho_atm*math.fabs(v)*v)*cs_area  # Sphere_Balloon.get_Cd(state.v, state.el)*(0.5*rho_atm*fabs(state.v)*state.v)*cs_area
     vm = (massEnv + massPayload) + rho_atm*vol + vm_coeff*rho_atm*vol
-    #print "!!!", massEnv+ massPayload, rho_atm*vol, vm_coeff*rho_atm*vol
+    # print "!!!", massEnv+ massPayload, rho_atm*vol, vm_coeff*rho_atm*vol
     accel = (F_b  - F_d - (massEnv + massPayload)*atm.g)/vm
-    #print "T_s", T_s, "rho_int:", rho_int, "rho_atm:", rho_atm, "F_b:", F_b, "F_d", F_d,"vm:",vm, "g:", atm.g
-    #print accel
+    # print "T_s", T_s, "rho_int:", rho_int, "rho_atm:", rho_atm, "F_b:", F_b, "F_d", F_d,"vm:",vm, "g:", atm.g
+    # print accel
     return accel
 
 
-#rate of change of Surface Temperature
+# rate of change of Surface Temperature
 def get_dTs(state,h):
     bal = sphere_balloon.Sphere_Balloon(5.79,0.8)
     rad = radiation.Radiation(doy,lat,h,state.el)
-    q_rad  = rad.get_rad_total(lat, state.el, h,5.79)
+    q_rad = rad.get_rad_total(lat, state.el, h,5.79)
     q_surf = bal.get_sum_q_surf(q_rad, state.Ts, state.el, state.v)
-    q_int  = bal.get_sum_q_int(state.Ts, state.Ti, state.el)
+    q_int = bal.get_sum_q_int(state.Ts, state.Ti, state.el)
     dT_sdt = (q_surf-q_int)/k
-    #print "q_rad: ", q_rad, "q_surf: ", q_surf, "q_int: ", q_int
-    #print "dT_sdt:", dT_sdt, "\n"
+    # print "q_rad: ", q_rad, "q_surf: ", q_surf, "q_int: ", q_int
+    # print "dT_sdt:", dT_sdt, "\n"
     return dT_sdt
 
 def get_dTi(state):
     bal = sphere_balloon.Sphere_Balloon(5.79,0.8)
     atm = fluids.atmosphere.ATMOSPHERE_1976(state.el)
-    q_int  = bal.get_sum_q_int(state.Ts, state.Ti, state.el)
+    q_int = bal.get_sum_q_int(state.Ts, state.Ti, state.el)
     tm_air = atm.rho*vol*Cp_air0
     return q_int/tm_air
 
 
-#----------------------------------------------------------------------------------------------------------
+# ----------------------------------------------------------------------------------------------------------
 
 
-#am i doing this right
+# am i doing this right
 
 def eval(state, dt, h, der):
     state.el = state.el + der.dz*dt
-    state.v  = state.v  + der.dv*dt
+    state.v = state.v + der.dv*dt
     if state.el < 132.6 and state.v < 0:
-        #state.v  = 0
+        # state.v  = 0
         state.el = 132.6
     state.Ti = state.Ti + der.dTi*dt
     state.Ts = state.Ts + der.dTs*dt
-
-
     out = StateDerrivative()
     out.dz = state.v
     out.dv = get_acceleration(state)
-    out.dTs = get_dTs(state,h + dt*((math.pi/6.)/(3600.))) #dt is converted to hour angle
+    out.dTs = get_dTs(state, h + dt * ((math.pi/6.) / 3600.))  # dt is converted to hour angle
     out.dTi = get_dTi(state)
 
     for t1, w1 in zip(t, wsol):
-            print (t1, w1[0], w1[1], w1[2], w1[3], w1[4])
+        print(t1, w1[0], w1[1], w1[2], w1[3], w1[4])
 
     return odeint(vectorfield, w0, t,atol=abserr, rtol=relerr)
 
 def integrate(state, h, dt):
     zero = StateDerrivative()
 
-    #These are all state derrivatives
+    # These are all state derrivatives
     a = eval(state, 0.0, h, zero)
     b = eval(state, 0.5*dt, h, a)
     c = eval(state, 0.5*dt, h, b)
