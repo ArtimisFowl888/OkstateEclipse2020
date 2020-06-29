@@ -6,7 +6,7 @@
 #include "sphere_balloon.h"
 #include "consts.h"	
 
-double lat = 35.08333/RTD;//Lattitude of ABQ,NM
+double lat = 36.12195/RTD;//Lattitude of ABQ,NM
 double min_el = 132.6;
 int doy = 180;
 
