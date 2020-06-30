@@ -1,4 +1,4 @@
-d = '.\Profile\Profile\';
+d = 'C:\Users\bsrev\Desktop\OkstateEclipse2020-master\gravity-wave-gui-matlab-master\gravity-wave-gui-matlab-master/eclipseData';
 t = fullfile(d, "*.txt");
 files = dir(t);
 for i=1:size(files)
