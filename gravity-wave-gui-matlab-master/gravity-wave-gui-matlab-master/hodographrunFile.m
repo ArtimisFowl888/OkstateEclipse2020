@@ -1,8 +1,6 @@
 
 d = '.\eclipseData';
 
-d = '.\Profile\Profile\';
-
 t = fullfile(d, "*.txt");
 files = dir(t);
 for i=1:size(files)
