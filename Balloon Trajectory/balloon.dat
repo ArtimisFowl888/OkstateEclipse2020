@@ -1,5 +1,5 @@
 5.79        # diameter (m)
-0.8         # payload mass (kg)
+20.0         # payload mass (kg)
 939.0       # envelope material density (kg/m^3)
 7.874E-6    # envelope thickness (m)
 2250.0      # specific heat envelope material (J/(kg K))

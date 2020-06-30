@@ -7,8 +7,8 @@
 #include "consts.h"	
 
 double lat = 36.12195/RTD;//Lattitude of ABQ,NM
-double min_el = 132.6;
-int doy = 180;
+double min_el = 240;
+int doy = 184;
 
 Std_atm atm;
 Rad_flux rad(doy, &atm);
