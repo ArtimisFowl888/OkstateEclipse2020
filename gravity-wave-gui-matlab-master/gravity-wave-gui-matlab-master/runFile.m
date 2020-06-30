@@ -5,7 +5,7 @@ addpath('./acf/'); % for autocorrelation function
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                           User defined variables                       %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-dataDirectory = '.\Profile\Profile\';
+dataDirectory = '.\eclipseData\';
 saveDirectory = '.\Profile\';
 % The w/f happened with no correction to wind direction, a window of
 % 12km - 40km, and a heightSamplingFrequency of 5m.
