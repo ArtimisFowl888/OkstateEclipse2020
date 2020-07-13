@@ -5,8 +5,8 @@ addpath('./acf/'); % for autocorrelation function
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                           User defined variables                       %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-dataDirectory = 'E:\MATLAB Drive\Eclipse\gravity-wave-analysis\Profile\Profile\';
-saveDirectory = 'E:\MATLAB Drive\Eclipse\gravity-wave-analysis\Profile\';
+dataDirectory = '.\Profile\Profile\';
+saveDirectory = '.\Profile\';
 % The w/f happened with no correction to wind direction, a window of
 % 12km - 40km, and a heightSamplingFrequency of 5m.
 % heightSamplingFrequency of 7m makes a 90 w/f show up.
