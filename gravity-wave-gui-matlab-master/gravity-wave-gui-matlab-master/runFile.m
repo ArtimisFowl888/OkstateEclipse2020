@@ -5,7 +5,7 @@ addpath('./acf/'); % for autocorrelation function
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                           User defined variables                       %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-dataDirectory = '.\eclipseData\';
+dataDirectory = '.\OSUeclipseData\';
 saveDirectory = '.\Profile\';
 % The w/f happened with no correction to wind direction, a window of
 % 12km - 40km, and a heightSamplingFrequency of 5m.
@@ -147,3 +147,6 @@ set(gca,'XTickLabelRotation', 45, 'fontsize', 16)
 ylabel("Altitude of detection (km)")
 xlabel("Flight number")
 title("Propagation direction and detection altitude of gravity waves", 'fontsize', 16);
+
+
+
