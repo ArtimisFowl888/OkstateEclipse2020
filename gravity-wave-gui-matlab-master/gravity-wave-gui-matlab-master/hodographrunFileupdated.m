@@ -1,5 +1,9 @@
 d = '.\eclipseData';
+
 sonde = 1;
+% if using DFM-17 set sonde = 1
+% if using RS92 set sonde = 2
+
 if sonde == 2
     t = fullfile(d, "*.csv");
     files = dir(t);
@@ -22,7 +26,12 @@ for i=1:size(files)
     if isempty(data)
         continue;
     end
-    RS = mean(data.Rs)
+    if sonde == 2
+        RS = 5;
+    else
+        RS = mean(data.Rs);
+    end
+    
     u = -(data.Ws) .* sind(data.Wd); % from MetPy
     v = -(data.Ws) .* cosd(data.Wd); %    
     subplot(2, 1, 1)
