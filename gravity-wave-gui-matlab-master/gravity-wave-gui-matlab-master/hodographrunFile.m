@@ -1,14 +1,24 @@
 d = '.\eclipseData';
-t = fullfile(d, "*.txt");
-files = dir(t);
-
+sonde = 'RS92';
+if sonde == 'RS92'
+    t = fullfile(d, "*.csv");
+    files = dir(t);
+else
+    t = fullfile(d, "*.txt");
+    files = dir(t);
+end
 for i=1:size(files)
     current = files(i).name;
     current = fullfile(d, current);
-    data = readRadioSondeData(current);
+    if sonde == 'RS92'
+        data = readRS92Data(current);
+    else
+        data = readRadioSondeData(current);
+    end
+    
     [~, idx] = max(data.Alt);
     data = data(1:idx, :);
-    data = data(data.Alt > 12000, :);
+    data = data(data.Alt > 1200, :);
     if isempty(data)
         continue;
     end

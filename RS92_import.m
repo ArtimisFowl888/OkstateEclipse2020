@@ -27,8 +27,8 @@ opts.DataLines = dataLines;
 opts.Delimiter = ",";
 
 % Specify column names and types
-opts.VariableNames = ["Frame", "Pressure", "Temp", "Humidity", "GPSalt", "GPSwinddir", "GPSwindspeed"];
-opts.VariableTypes = ["double", "double", "double", "double", "double", "double", "double"];
+opts.VariableNames = ["Frame", "Pressure", "Temp", "Humidity", "GPSalt", "GPSwindspeed", "GPSwinddir"];
+opts.VariableTypes = ["double", "double", "double", "double", "double", "double", "string"];
 
 % Specify file level properties
 opts.ExtraColumnsRule = "ignore";
