@@ -46,7 +46,7 @@ for i=1:size(files)
         title vVSaltitude;
         sgtitle(files(i).name, 'Interpreter', 'none');
         [x, y] = ginput(2);
-        [~, Alt_1] = min(abs(Alt - y(1)));
+        [~, Alt_1] = min(abs( Alt - y(1)));
         [~, Alt_2] = min(abs(Alt - y(2)));
         %[~, Alt_1] = min(abs(Alt - 22.55*1000));
         %[~, Alt_2] = min(abs(Alt - 22.1*1000));
