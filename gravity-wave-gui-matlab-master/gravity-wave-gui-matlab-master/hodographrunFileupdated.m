@@ -1,4 +1,4 @@
-d = '.\eclipseData';
+d = 'C:\Users\Level1Zach\Desktop\testdata';
 
 sonde = 1;
 % if using DFM-17 set sonde = 1
