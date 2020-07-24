@@ -1,6 +1,3 @@
-
-clearvars
-
 d = '.\hodograph';
 
 t = fullfile(d, "*.txt");
@@ -14,7 +11,7 @@ already_seen = [];
 flight_num = [];
 offsets = [];
 coriolisFreq = coriolisFrequency(30.25);
-unique_flights = ["F11","F12","F13","F14"];
+unique_flights = ["F01","F02","F03","F04"];
 for k=1:size(unique_flights, 2)
     for i=1:size(files)
         flight_number = files(i).name(1:3);
