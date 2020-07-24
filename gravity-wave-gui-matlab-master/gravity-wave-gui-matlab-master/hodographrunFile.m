@@ -1,44 +1,56 @@
-d = '/Users/thomascolligan/chile_data/renamed/bad_data_removed/all';
-t = fullfile(d, "*.txt");
-files = dir(t);
+d = '.\eclipseData';
+sonde = 'RS92';
+if sonde == 'RS92'
+    t = fullfile(d, "*.csv");
+    files = dir(t);
+else
+    t = fullfile(d, "*.txt");
+    files = dir(t);
+end
 for i=1:size(files)
     current = files(i).name;
     current = fullfile(d, current);
-    if ~contains(current, 'C12')
-        continue
+    if sonde == 'RS92'
+        data = readRS92Data(current);
+    else
+        data = readRadioSondeData(current);
     end
-    data = readRadioSondeData(current);
+    
     [~, idx] = max(data.Alt);
     data = data(1:idx, :);
-    data = data(data.Alt > 12000, :);
+    data = data(data.Alt > 1200, :);
     if isempty(data)
         continue;
     end
-    u = -data.Ws .* sind(data.Wd); % from MetPy
-    v = -data.Ws .* cosd(data.Wd); %    
+    u = -(data.Ws) .* sind(data.Wd); % from MetPy
+    v = -(data.Ws) .* cosd(data.Wd); %    
     subplot(2, 1, 1)
-    [alt, u, v, temp, bvFreqSquared] = ... 
+    [Alt, u, v, temp, bvFreqSquared] = ... 
         preprocessDataNoResample(data.Alt, u, v, data.T, data.P, 5);
     while(true)
         subplot(1, 3, 1);
-        plot(u, alt, 'b');
+        plot(u, Alt, 'b');
+        title uVSaltitude;
         subplot(1, 3, 2);
-        plot(v, alt, 'b');
+        plot(v, Alt, 'r');
+        title vVSaltitude;
         sgtitle(files(i).name, 'Interpreter', 'none');
         [x, y] = ginput(2);
-        [~, alt_1] = min(abs(alt - y(1)));
-        [~, alt_2] = min(abs(alt - y(2)));
-        %[~, alt_1] = min(abs(alt - 22.55*1000));
-        %[~, alt_2] = min(abs(alt - 22.1*1000));
-        upper = max(alt_1, alt_2);
-        lower = min(alt_1, alt_2);
+        [~, Alt_1] = min(abs(Alt - y(1)));
+        [~, Alt_2] = min(abs(Alt - y(2)));
+        %[~, Alt_1] = min(abs(Alt - 22.55*1000));
+        %[~, Alt_2] = min(abs(Alt - 22.1*1000));
+        upper = max(Alt_1, Alt_2);
+        lower = min(Alt_1, Alt_2);
         subplot(1, 3, 3);
         plot(u(lower:upper), v(lower:upper));
-        subplot(1, 3, 1)
+        title HodographEllipse;
+        subplot(1, 3, 1);
         hold on;
-        plot(u(lower), alt(lower), 'ro','MarkerSize', 14);
-        plot(u(upper), alt(upper), 'ro', 'MarkerSize', 14);
-        fprintf("%d, %d\n", alt(lower), alt(upper));
+        
+        plot(u(lower), Alt(lower), 'ro','MarkerSize', 14);
+        plot(u(upper), Alt(upper), 'bo', 'MarkerSize', 14);
+        fprintf("%d, %d\n", Alt(lower), Alt(upper));
         subplot(1, 3, 3);
         hold on;
         plot(u(lower), v(lower), 'ro','MarkerSize', 14);
@@ -52,10 +64,10 @@ for i=1:size(files)
                 cla
                 continue
             end
-            T = table(alt(lower:upper), u(lower:upper), v(lower:upper), temp(lower:upper), bvFreqSquared(lower:upper));
-            T.Properties.VariableNames = {'alt' 'u' 'v' 'temp' 'bv2'};
+            T = table(Alt(lower:upper), u(lower:upper), v(lower:upper), temp(lower:upper), bvFreqSquared(lower:upper));
+            T.Properties.VariableNames = {'Alt' 'u' 'v' 'temp' 'bv2'};
             [~, n, ~] = fileparts(files(i).name);
-            fname = sprintf("~/hodographs/%s-%d-%d.txt", n, alt(lower), alt(upper));
+            fname = sprintf(".\\hodograph\\%s-%d-%d.txt", n, Alt(lower), Alt(upper));
             writetable(T, fname);
 
         end
