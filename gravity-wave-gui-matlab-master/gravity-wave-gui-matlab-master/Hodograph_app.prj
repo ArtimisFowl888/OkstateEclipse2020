@@ -1,9 +1,9 @@
 <deployment-project plugin="plugin.ezdeploy" plugin-version="1.0">
-  <configuration file="E:\GIT\Eclipse_Matlab\gravity-wave-gui-matlab-master\gravity-wave-gui-matlab-master\Hodograph_app.prj" location="E:\GIT\Eclipse_Matlab\gravity-wave-gui-matlab-master\gravity-wave-gui-matlab-master" name="Hodograph_app" target="target.ezdeploy.standalone" target-name="Application Compiler">
-    <param.appname>Hodograph_app_Test</param.appname>
+  <configuration build-checksum="716093675" file="E:\GIT\Eclipse_Matlab\gravity-wave-gui-matlab-master\gravity-wave-gui-matlab-master\Hodograph_app.prj" location="E:\GIT\Eclipse_Matlab\gravity-wave-gui-matlab-master\gravity-wave-gui-matlab-master" name="Hodograph_app" preferred-package-location="E:\GIT\Eclipse_Matlab\gravity-wave-gui-matlab-master\gravity-wave-gui-matlab-master\Hodograph_app\for_redistribution" preferred-package-type="package.type.exe" target="target.ezdeploy.standalone" target-name="Application Compiler">
+    <param.appname>Hodograph_app</param.appname>
     <param.icon />
     <param.icons />
-    <param.version>1.3</param.version>
+    <param.version>1.5</param.version>
     <param.authnamewatermark>Zach Yap</param.authnamewatermark>
     <param.email>zyap@okstate.edu</param.email>
     <param.company />
@@ -11,7 +11,7 @@
     <param.description />
     <param.screenshot>D:\Download\Labcoats_Logo.png</param.screenshot>
     <param.guid />
-    <param.installpath.string>\Hodograph_app_Test\</param.installpath.string>
+    <param.installpath.string>\Hodograph_app\</param.installpath.string>
     <param.installpath.combo>option.installpath.programfiles</param.installpath.combo>
     <param.logo>D:\Download\Labcoats_Logo.png</param.logo>
     <param.install.notes />
@@ -27,7 +27,7 @@
     <param.web.mcr>true</param.web.mcr>
     <param.package.mcr>false</param.package.mcr>
     <param.no.mcr>false</param.no.mcr>
-    <param.web.mcr.name>MyAppInstaller_web</param.web.mcr.name>
+    <param.web.mcr.name>Hodograph_app</param.web.mcr.name>
     <param.package.mcr.name>MyAppInstaller_mcr</param.package.mcr.name>
     <param.no.mcr.name>MyAppInstaller_app</param.no.mcr.name>
     <param.windows.command.prompt>true</param.windows.command.prompt>
@@ -66,7 +66,6 @@
       <param.web.mcr />
       <param.package.mcr />
       <param.no.mcr />
-      <param.web.mcr.name />
       <param.package.mcr.name />
       <param.no.mcr.name />
       <param.windows.command.prompt />
@@ -85,15 +84,17 @@
       <file>${PROJECT_ROOT}\functions\ds2nfu.m</file>
       <file>${PROJECT_ROOT}\functions\fit_ellipse.m</file>
       <file>${PROJECT_ROOT}\functions\readDFM17.m</file>
+      <file>${PROJECT_ROOT}\Labcoats_Logo.png</file>
       <file>${PROJECT_ROOT}\preprocessDataNoResample.m</file>
       <file>${PROJECT_ROOT}\private\azimuthFromUnitCircle.m</file>
       <file>${PROJECT_ROOT}\private\bruntVaisalaFrequency.m</file>
       <file>${PROJECT_ROOT}\private\coriolisFrequency.m</file>
       <file>${PROJECT_ROOT}\private\readRadioSondeData.m</file>
+      <file>${PROJECT_ROOT}\untitled1.png</file>
     </fileset.depfun>
     <build-deliverables>
+      <file location="${PROJECT_ROOT}\Hodograph_app\for_testing" name="Hodograph_app.exe" optional="false">E:\GIT\Eclipse_Matlab\gravity-wave-gui-matlab-master\gravity-wave-gui-matlab-master\Hodograph_app\for_testing\Hodograph_app.exe</file>
       <file location="${PROJECT_ROOT}\Hodograph_app\for_testing" name="readme.txt" optional="true">E:\GIT\Eclipse_Matlab\gravity-wave-gui-matlab-master\gravity-wave-gui-matlab-master\Hodograph_app\for_testing\readme.txt</file>
-      <file location="${PROJECT_ROOT}\Hodograph_app\for_testing" name="Hodograph_app_Test.exe" optional="false">E:\GIT\Eclipse_Matlab\gravity-wave-gui-matlab-master\gravity-wave-gui-matlab-master\Hodograph_app\for_testing\Hodograph_app_Test.exe</file>
       <file location="${PROJECT_ROOT}\Hodograph_app\for_testing" name="splash.png" optional="false">E:\GIT\Eclipse_Matlab\gravity-wave-gui-matlab-master\gravity-wave-gui-matlab-master\Hodograph_app\for_testing\splash.png</file>
     </build-deliverables>
     <workflow />
