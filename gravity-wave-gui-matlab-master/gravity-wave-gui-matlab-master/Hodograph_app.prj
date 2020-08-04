@@ -1,9 +1,9 @@
 <deployment-project plugin="plugin.ezdeploy" plugin-version="1.0">
-  <configuration build-checksum="716093675" file="E:\GIT\Eclipse_Matlab\gravity-wave-gui-matlab-master\gravity-wave-gui-matlab-master\Hodograph_app.prj" location="E:\GIT\Eclipse_Matlab\gravity-wave-gui-matlab-master\gravity-wave-gui-matlab-master" name="Hodograph_app" preferred-package-location="E:\GIT\Eclipse_Matlab\gravity-wave-gui-matlab-master\gravity-wave-gui-matlab-master\Hodograph_app\for_redistribution" preferred-package-type="package.type.exe" target="target.ezdeploy.standalone" target-name="Application Compiler">
+  <configuration build-checksum="3214229295" file="E:\GIT\Eclipse_Matlab\gravity-wave-gui-matlab-master\gravity-wave-gui-matlab-master\Hodograph_app.prj" location="E:\GIT\Eclipse_Matlab\gravity-wave-gui-matlab-master\gravity-wave-gui-matlab-master" name="Hodograph_app" preferred-package-location="E:\GIT\Eclipse_Matlab\gravity-wave-gui-matlab-master\gravity-wave-gui-matlab-master\Hodograph_app\for_redistribution" preferred-package-type="package.type.exe" target="target.ezdeploy.standalone" target-name="Application Compiler">
     <param.appname>Hodograph_app</param.appname>
     <param.icon />
     <param.icons />
-    <param.version>1.5</param.version>
+    <param.version>3.0.1.2</param.version>
     <param.authnamewatermark>Zach Yap</param.authnamewatermark>
     <param.email>zyap@okstate.edu</param.email>
     <param.company />
@@ -27,7 +27,7 @@
     <param.web.mcr>true</param.web.mcr>
     <param.package.mcr>false</param.package.mcr>
     <param.no.mcr>false</param.no.mcr>
-    <param.web.mcr.name>Hodograph_app</param.web.mcr.name>
+    <param.web.mcr.name>Hodograph_app_3.0.1.2</param.web.mcr.name>
     <param.package.mcr.name>MyAppInstaller_mcr</param.package.mcr.name>
     <param.no.mcr.name>MyAppInstaller_app</param.no.mcr.name>
     <param.windows.command.prompt>true</param.windows.command.prompt>
@@ -81,7 +81,8 @@
     <fileset.resources />
     <fileset.package />
     <fileset.depfun>
-      <file>${PROJECT_ROOT}\functions\ds2nfu.m</file>
+      <file>${PROJECT_ROOT}\acf\acf.m</file>
+      <file>${PROJECT_ROOT}\dnsfnu\ds2nfu.m</file>
       <file>${PROJECT_ROOT}\functions\fit_ellipse.m</file>
       <file>${PROJECT_ROOT}\functions\readDFM17.m</file>
       <file>${PROJECT_ROOT}\Labcoats_Logo.png</file>
@@ -89,8 +90,19 @@
       <file>${PROJECT_ROOT}\private\azimuthFromUnitCircle.m</file>
       <file>${PROJECT_ROOT}\private\bruntVaisalaFrequency.m</file>
       <file>${PROJECT_ROOT}\private\coriolisFrequency.m</file>
+      <file>${PROJECT_ROOT}\private\doAnalysis.m</file>
+      <file>${PROJECT_ROOT}\private\estimateParametersFromWavePacket.m</file>
+      <file>${PROJECT_ROOT}\private\findMinimaClosestToIndex.m</file>
+      <file>${PROJECT_ROOT}\private\preprocessData.m</file>
       <file>${PROJECT_ROOT}\private\readRadioSondeData.m</file>
+      <file>${PROJECT_ROOT}\private\readSondeFile.m</file>
       <file>${PROJECT_ROOT}\untitled1.png</file>
+      <file>${PROJECT_ROOT}\wave_matlab\chisquare_inv.m</file>
+      <file>${PROJECT_ROOT}\wave_matlab\wave_bases.m</file>
+      <file>${PROJECT_ROOT}\wave_matlab\wave_signif.m</file>
+      <file>${PROJECT_ROOT}\wave_matlab\wavelet.m</file>
+      <file>${PROJECT_ROOT}\WaveletTransform.m</file>
+      <file>${PROJECT_ROOT}\WindowedWaveletTransform.m</file>
     </fileset.depfun>
     <build-deliverables>
       <file location="${PROJECT_ROOT}\Hodograph_app\for_testing" name="Hodograph_app.exe" optional="false">E:\GIT\Eclipse_Matlab\gravity-wave-gui-matlab-master\gravity-wave-gui-matlab-master\Hodograph_app\for_testing\Hodograph_app.exe</file>

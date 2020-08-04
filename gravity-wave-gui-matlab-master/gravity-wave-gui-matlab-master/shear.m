@@ -1,4 +1,4 @@
-function [HL] = shear(fullfilename,ax_1)
+function [HL, HL_max, HL_min, HL_all] = shear(fullfilename,ax_1)
 
 %This code requires readSondFile.m to be in the current working directory
 %
@@ -27,7 +27,8 @@ alt = data.Alt; %altitude (MSL) in m
 [maxa,maxaidx] = max(alt);
 ws = w(1:maxaidx);
 height = alt(1:maxaidx)-alt(1);
-
+ws = ws(height > 12000, :);
+height = height(height > 12000, :);
 %find local max 
 LMX = islocalmax(ws);
 LMN = islocalmin(ws);
@@ -49,7 +50,9 @@ for k = 1:length(ws)
 end
 
 HL = height(levels); % use logical array to determine heights of significant wind shear
-
+HL_max = height(LMX);
+HL_min = height(LMN);
+HL_all = [HL_max, HL_min]
 if isempty(ax_1) % Allows this code to be used without the GUI, do not get rid of
     f1 = figure(); 
     ax_1 = axes(f1);

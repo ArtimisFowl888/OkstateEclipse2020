@@ -1,5 +1,6 @@
 function [alt, u, v, temp, bvFreqSquared] = preprocessDataNoResample(alt, u, v, temp, pressure, heightSamplingFrequency)
 % This function resamples the data and removes the background.
+temp = temp*273.5;
 potentialTemperature = (1000.0^0.286)*temp./(pressure.^0.286); % from Jaxen
 % remove background winds with a moving mean.
 altExtent = max(alt) - min(alt);
