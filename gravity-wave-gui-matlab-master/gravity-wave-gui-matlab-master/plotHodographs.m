@@ -1,4 +1,4 @@
-d = '.\hodograph';
+d = 'C:\Users\Level1Zach\Desktop\Hodograph_test\hodograph';
 
 t = fullfile(d, "*.txt");
 files = dir(t); 
@@ -26,6 +26,7 @@ for k=1:size(unique_flights, 2)
     data = readtable(fullfile(d, files(i).name));
     set(0, 'CurrentFigure', hodo_fig);
     ax = subplot(6, 5, i);
+    axis equal; % this is needed to keep plots circular
     axs = [axs;ax];
     eps = fit_ellipse(data.u, data.v, ax);
     hold on
