@@ -1,4 +1,4 @@
-d = '~/hodographs/';
+d = '.\hodograph';
 
 t = fullfile(d, "*.txt");
 files = dir(t); 
@@ -11,7 +11,7 @@ already_seen = [];
 flight_num = [];
 offsets = [];
 coriolisFreq = coriolisFrequency(30.25);
-unique_flights = ["F04","F07","F10","F11","F12","F13","F14","F16","F18","F19","F20","F21","F23","F24","F25"];
+unique_flights = ["F01","F02","F03","F04"];
 for k=1:size(unique_flights, 2)
     for i=1:size(files)
         flight_number = files(i).name(1:3);
@@ -30,7 +30,7 @@ for k=1:size(unique_flights, 2)
     eps = fit_ellipse(data.u, data.v, ax);
     hold on
     plot(data.u, data.v, 'k.')
-    lambda_z = 2*(data.alt(end) - data.alt(1));
+    lambda_z = 2*(data.Alt(end) - data.Alt(1));
     m = 2*pi / lambda_z;
     p = eps.phi;
     rot = [cos(p) -sin(p); sin(p) cos(p)];
@@ -38,7 +38,7 @@ for k=1:size(unique_flights, 2)
     uvrot = rot*uv';
     urot = uvrot(1, :);
     dT = data.temp(2:end) - data.temp(1:end-1);
-    dz = data.alt(2:end) - data.alt(1:end-1);
+    dz = data.Alt(2:end) - data.Alt(1:end-1);
     wf = eps.long_axis / eps.short_axis;
     bvMean = mean(data.bv2);
     intrinsicFreq = coriolisFreq*wf;
@@ -63,11 +63,11 @@ for k=1:size(unique_flights, 2)
     set(0, 'CurrentFigure', series_figure);
     xlim([5, 155]);
     ylim([12, 33]);
-    alt_of_detection_km = mean(data.alt) / 1000;
+    Alt_of_detection_km = mean(data.Alt) / 1000;
     x1 = counter*offset;
     x2 = counter*offset + wf*cosd(rad2deg(p));
-    y1 = alt_of_detection_km;
-    y2 = alt_of_detection_km + wf*sind(rad2deg(p));
+    y1 = Alt_of_detection_km;
+    y2 = Alt_of_detection_km + wf*sind(rad2deg(p));
     hold on;
     p1 = [x1 y1];
     p2 = [x2 y2];
@@ -76,20 +76,20 @@ for k=1:size(unique_flights, 2)
     [xf, yf] = ds2nfu([x1 x2], [y1 y2]);
     annotation(gcf, 'arrow', xf,yf, 'color', '#9a0200', 'LineWidth', 2)
     if strcmp(flight_number, "F23")
-        if alt_of_detection_km > 20 && alt_of_detection_km < 24
+        if Alt_of_detection_km > 20 && Alt_of_detection_km < 24
             xc = [xf(1) - 0.125, xf(2)-0.02];
             yc = [yf(1) + 0.1, yf(1)+0.05];
             annotation(gcf, 'textarrow', xc, yc, 'String', 'Eclipse Wave #2')
-        elseif alt_of_detection_km > 20
+        elseif Alt_of_detection_km > 20
             xc = [xf(1) - 0.125, xf(2)- 0.02];
             yc = [yf(1) + 0.1, yf(1)+0.05];
             annotation(gcf, 'textarrow', xc, yc, 'String', 'Eclipse Wave #3')
         end
-        fprintf("%f\n", alt_of_detection_km);
+        fprintf("%f\n", Alt_of_detection_km);
     end
     %plot([x1 x2], [y1 y2], 'color', '#9a0200', 'linewidth', 3);
     placeholder = [counter*offset counter*offset];
-    plot(placeholder, [12, 32.5], 'k'); % plot altitude in km.
+    plot(placeholder, [12, 32.5], 'k'); % plot Altitude in km.
     end
     offsets = [offsets, counter*offset];
     counter = counter + 1;
@@ -107,4 +107,4 @@ xticklabels(unique_flights);
 set(gca,'XTickLabelRotation', 45, 'fontsize', 16)
 ylabel("Altitude of detection (km)") 
 xlabel("Flight number")
-title("Propagation direction and detection altitude of gravity waves (hodograph method)", 'fontsize', 16);
+title("Propagation direction and detection Altitude of gravity waves (hodograph method)", 'fontsize', 16);

@@ -1,6 +1,10 @@
-d = '.\eclipseData';
-sonde = 'RS92';
-if sonde == 'RS92'
+d = 'C:\Users\Level1Zach\Desktop\testdata';
+
+sonde = 1;
+% if using DFM-17 set sonde = 1
+% if using RS92 set sonde = 2
+
+if sonde == 2
     t = fullfile(d, "*.csv");
     files = dir(t);
 else
@@ -10,7 +14,7 @@ end
 for i=1:size(files)
     current = files(i).name;
     current = fullfile(d, current);
-    if sonde == 'RS92'
+    if sonde == 2
         data = readRS92Data(current);
     else
         data = readRadioSondeData(current);
@@ -18,15 +22,21 @@ for i=1:size(files)
     
     [~, idx] = max(data.Alt);
     data = data(1:idx, :);
-    data = data(data.Alt > 1200, :);
+    data = data(data.Alt > 12000, :);
     if isempty(data)
         continue;
     end
+    if sonde == 2
+        RS = 5;
+    else
+        RS = mean(data.Rs);
+    end
+    
     u = -(data.Ws) .* sind(data.Wd); % from MetPy
     v = -(data.Ws) .* cosd(data.Wd); %    
     subplot(2, 1, 1)
     [Alt, u, v, temp, bvFreqSquared] = ... 
-        preprocessDataNoResample(data.Alt, u, v, data.T, data.P, 5);
+        preprocessDataNoResample(data.Alt, u, v, data.T, data.P, RS);
     while(true)
         subplot(1, 3, 1);
         plot(u, Alt, 'b');
@@ -36,7 +46,7 @@ for i=1:size(files)
         title vVSaltitude;
         sgtitle(files(i).name, 'Interpreter', 'none');
         [x, y] = ginput(2);
-        [~, Alt_1] = min(abs(Alt - y(1)));
+        [~, Alt_1] = min(abs( Alt - y(1)));
         [~, Alt_2] = min(abs(Alt - y(2)));
         %[~, Alt_1] = min(abs(Alt - 22.55*1000));
         %[~, Alt_2] = min(abs(Alt - 22.1*1000));

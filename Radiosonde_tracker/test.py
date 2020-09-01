@@ -1,6 +1,5 @@
 import requests
 import urllib.request
-import time
 from bs4 import BeautifulSoup
 
 url = 'http://web.mta.info/developers/turnstile.html'
@@ -13,6 +12,6 @@ soup.findAll('a')
 one_a_tag = soup.findAll('a')[37]
 link = one_a_tag['href']
 
-download_url = 'http://web.mta.info/developers/'+ link
+download_url = 'http://web.mta.info/developers/' + link
 
-urllib.request.urlretrieve(download_url,'./'+link[link.find('/turnstile_')+1:])
+urllib.request.urlretrieve(download_url, './'+link[link.find('/turnstile_')+1:])
