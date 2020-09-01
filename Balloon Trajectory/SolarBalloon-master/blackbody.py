@@ -20,5 +20,5 @@ def f(T_s):
     return Pin-emmis*SB*a*(pow(T_s,4))
 
 T_s = optimize.newton(f, 400)
-print T_s
+print (T_s)
 #print Pin-emmis*SB*a*(pow(T_s,4))

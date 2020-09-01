@@ -75,9 +75,9 @@ class Mars_Main:
 
             dzdotdt = self.get_acceleration(v[i],el[i],T_s[i],T_i[i],mp)
             zdot = v[i] + dzdotdt*self.dt
-            z = el[i]+zdot*self.dt#+dzdotdt*pow(dt,2)#*1000
+            z = el[i]+zdot*self.dt # +dzdotdt*pow(dt,2)#*1000
 
-            if z<0:
+            if z < 0:
                 v.append(0)
                 el.append(0)
             else:
@@ -91,6 +91,6 @@ class Mars_Main:
                 self.mdot = 0
 
             if i%3600 == 0:
-                print ("t", timespace[i+1]/3600,  "el", el[i+1], "v", v[i+1], "accel", dzdotdt, "T_s", T_s[i+1], "T_i", T_i[i+1])
+                print("t", timespace[i+1]/3600,  "el", el[i+1], "v", v[i+1], "accel", dzdotdt, "T_s", T_s[i+1], "T_i", T_i[i+1])
 
-        return [T_s,T_i,el,v]
+        return [T_s, T_i, el, v]
