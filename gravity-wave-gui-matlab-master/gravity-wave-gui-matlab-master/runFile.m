@@ -5,8 +5,8 @@ addpath('./acf/'); % for autocorrelation function
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                           User defined variables                       %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-dataDirectory = '.\data2\';
-saveDirectory = '.\Profile\';
+dataDirectory = 'C:\Users\Level1Zach\Desktop\Hodograph_test\eclipseData';
+saveDirectory = 'C:\Users\Level1Zach\Desktop\Hodograph_test\hodograph';
 % The w/f happened with no correction to wind direction, a window of
 % 12km - 40km, and a heightSamplingFrequency of 5m.
 % heightSamplingFrequency of 7m makes a 90 w/f show up.
@@ -15,8 +15,8 @@ save = true; % Do you want to save the data? It will save in saveDirectory.
 lowerCutOffAltitude = 6000; % Altitude where you want to start analysis
 upperCutOffAltitude = 40000; % Altitude where you want to end analysis - 
 % a value of 40000 will go to the highest point in the profile.
-latitude = 60; % Latitude of launch location.
-heightSamplingFrequency = 5;
+latitude = 36; % Latitude of launch location.
+heightSamplingFrequency = 4;
 printData = true;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                            End of user editing                         %
@@ -101,7 +101,7 @@ for i=1:size(files)
             y1 = data.alt_of_detection_km(q);
             y2 = data.alt_of_detection_km(q) + magnitudes(q)*sind(angle(q));
             [xf, yf] = ds2nfu([x1 x2], [y1 y2]);
-            annotation(gcf, 'arrow', xf,yf, 'color', '#9a0200', 'LineWidth', 2)
+%             annotation(gcf, 'arrow', xf,yf, 'color', '#9a0200', 'LineWidth', 2)
             %plot([x1 x2], [y1 y2], 'color', '#9a0200', 'linewidth', 3);
         end
         scaleFactor = 15;

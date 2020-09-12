@@ -1,4 +1,4 @@
-d = 'C:\Users\Level1Zach\Desktop\Hodograph_test\hodograph';
+d = 'C:\Users\Level1Zach\Desktop\Hodograph_test\New folder\hodograph';
 
 t = fullfile(d, "*.txt");
 files = dir(t); 
