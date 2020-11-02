@@ -16,7 +16,7 @@ lowerCutOffAltitude = 6000; % Altitude where you want to start analysis
 upperCutOffAltitude = 40000; % Altitude where you want to end analysis - 
 % a value of 40000 will go to the highest point in the profile.
 latitude = 36; % Latitude of launch location.
-heightSamplingFrequency = 4;
+heightSamplingFrequency = 5;
 printData = true;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                            End of user editing                         %
